@@ -1,0 +1,103 @@
+﻿<Window x:Class="EncryptionKeyTestingWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EncryptionKeyTestingWPF"
+        mc:Ignorable="d"
+        Title="Encryption testing" Height="450" Width="800"
+        Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="File">
+                    <MenuItem Header="Open file">
+                        <MenuItem Header="As ASCII" Name="OFASCII" Click="OFASCII_Click"></MenuItem>
+                        <MenuItem Header="As UTF-32" Name="OFUTF32" Click="OFUTF32_Click"></MenuItem>
+                        <MenuItem Header="As UTF-8" Name="OFUTF8" Click="OFUTF8_Click"></MenuItem>
+                        <MenuItem Header="As UTF-7" Name="OFUTF7" Click="OFUTF7_Click"></MenuItem>
+                    </MenuItem>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBox Grid.Row="0" Name="Input"></TextBox>
+            <WrapPanel Grid.Row="1" Margin="5">
+                <Button Padding="5" Name="StartButton" Click="StartButton_Click">Start</Button>
+                <Label></Label>
+                <Button Padding="5" Name="StopButton" IsEnabled="False" Click="StopButton_Click">Stop</Button>
+                <Label>|</Label>
+                <Button Padding="5" Name="BottomToTop" Click="BottomToTop_Click">Bottom to top</Button>
+                <Label>|</Label>
+                <Grid VerticalAlignment="Center">
+                    <WrapPanel>
+                        <RadioButton Name="IsEncrypt" IsChecked="True">Encrypt</RadioButton>
+                        <Label></Label>
+                        <RadioButton Name="IsDecrypt">Decrypt</RadioButton>
+                    </WrapPanel>
+                </Grid>
+                <Label>|</Label>
+                <Grid VerticalAlignment="Center">
+                    <WrapPanel>
+                        <RadioButton Name="IsTextEncryption">Text Encryption</RadioButton>
+                        <Label></Label>
+                        <RadioButton Name="IsByteEncryption" IsChecked="True">Byte Encryption</RadioButton>
+                    </WrapPanel>
+                </Grid>
+                <Label>|</Label>
+                <Grid VerticalAlignment="Center">
+                    <WrapPanel>
+                        <RadioButton Name="IsASCII" IsChecked="True">ASCII</RadioButton>
+                        <Label></Label>
+                        <RadioButton Name="IsUTF8">UTF-8</RadioButton>
+                    </WrapPanel>
+                </Grid>
+                <Label>|</Label>
+                <Label>Custom key: </Label>
+                <TextBox Width="250" Name="CustomKey">99633</TextBox>
+            </WrapPanel>
+            <TextBox Grid.Row="2" IsReadOnly="True" Name="Output"></TextBox>
+        </Grid>
+        <StatusBar Grid.Row="2">
+            <StatusBarItem Name="ActiveTasks">
+                Active tasks: 0
+            </StatusBarItem>
+            <RibbonSeparator></RibbonSeparator>
+            <StatusBarItem>
+                <ProgressBar Height="15" Width="125" Name="Progress"></ProgressBar>
+            </StatusBarItem>
+            <RibbonSeparator></RibbonSeparator>
+            <StatusBarItem Name="BytesProcessed">
+                Bytes proccessed: 0 Bytes/0 Bytes
+            </StatusBarItem>
+            <RibbonSeparator></RibbonSeparator>
+            <StatusBarItem Name="EncryptionKey">
+                Encryption key: 000000
+            </StatusBarItem>
+            <RibbonSeparator></RibbonSeparator>
+            <StatusBarItem Name="TimeElapsed">
+                Time elapsed: 00:00:00
+            </StatusBarItem>
+            <RibbonSeparator></RibbonSeparator>
+            <StatusBarItem Name="TimeRemaining">
+                Estemated time remaining: 00:00:00
+            </StatusBarItem>
+            <RibbonSeparator></RibbonSeparator>
+            <StatusBarItem Name="Status">
+                Status: Idle
+            </StatusBarItem>
+            <RibbonSeparator></RibbonSeparator>
+        </StatusBar>
+    </Grid>
+</Window>
